@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/layout.css">
     <link rel="stylesheet" href="../Styles/landing.css">
-    <link rel="stylesheet" href="../Styles/dashboard.css">
+    <link rel="stylesheet" href="../Styles/member_dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/3704673904.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
