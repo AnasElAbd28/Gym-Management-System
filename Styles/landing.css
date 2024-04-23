@@ -1,0 +1,84 @@
+h1{
+    color: #fff;
+    font-size: 50px;
+    font-family: 'Righteous', cursive;
+    margin-bottom: 30px;
+}
+.all-content{
+    margin-top: 200px;
+}
+
+.scroll-container {
+    width: 100%;
+    margin-top: 100px;
+  }
+  
+  .courses-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 10px; /* Add some bottom padding to accommodate the scrollbar */
+  }
+  
+  .course {
+    flex: 0 0 auto;
+    width: 150px; /* Adjust the width as per your design */
+    height: 250px; /* Adjust the height as per your design */
+    margin-right: 40px; /* Adjust the margin as per your design */
+    background-color: rgba(26, 97, 83, 0.267);
+    outline: 3px solid black;
+    border-radius: 15px;
+  }
+  .course:hover{
+    outline-color: white;
+    transition: all 0.5s;
+  }
+  .course:first-child {
+    /* CSS styles for the first .course element */
+    margin-left: 20px;
+  }
+  
+
+  .simplebar-scrollbar:before {
+    background-color: white !important;
+  }
+  
+  .simplebar-scrollbar.simplebar-visible:before {
+    opacity: 0.6 !important;
+  }
+  main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    margin: 0 auto;
+    
+  }
+  #pop-cor-headline , #ins-cor-headline{
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  .instructor-name , .course-name , .course-price{
+    color: #fff;
+    margin-top: 20px;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  img{
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+  }
+  .space{
+    width: 100%;
+    height: 500px;
+  }
+  nav{
+    margin-bottom: 100px;
+  }
+  #reg{
+    margin-bottom: 100px;
+    margin-top: 50px;
+  }
+  
