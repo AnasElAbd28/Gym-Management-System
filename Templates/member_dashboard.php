@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/layout.css">
     <link rel="stylesheet" href="../Styles/landing.css">
-    <link rel="stylesheet" href="../Styles/member_dashboard.css">
+    <link rel="stylesheet" href="../Styles/member_dashboard_style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/3704673904.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,7 @@
     <div class="all-content">
     <main>
     <?php
-    include 'db_conn.php';
+    /*include 'db_conn.php';
     session_start();
     if(isset($_SESSION['TP_ID']) && isset($_SESSION['TP_Name'])){
         ?>
@@ -58,7 +58,10 @@
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $courseCount = $row['course_count'];
+        */
         ?>
+        <h1>Hello</h1>
+         <div id="overview">
             <h2 id="overview-header">Membership Information</h2>
             <div id="overview-main">
             <div class="overview-section">
