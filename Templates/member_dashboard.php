@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+
+<?php
+session_start(); // Starting the session
+
+include 'db_conn.php';
+
+// Rest of your code
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,14 +31,15 @@
         </a>
         <div>
             <ul class="nav-links">
-                <li><a href="tp_view_course_page.php">Forum</a></li>
-                <li><a href="tp_logout.php">Quick Form Check</a></li>
-                <li><a href="tp_logout.php">Quiz</a></li>
-                <li><a href="tp_logout.php">Schedule</a></li>
-                <li><a href="tp_logout.php">Virtual competiton</a></li>
-                <li><a href="tp_logout.php">recommended plan</a></li>
-                <li><a href="tp_logout.php">Chat</a></li>
-                <li><a href="tp_logout.php">Profile</a></li>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">Quick Form Check</a></li>
+                <li><a href="#">Quiz</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Virtual competiton</a></li>
+                <li><a href="#">recommended plan</a></li>
+                <li><a href="#">Chat</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="logout.php">logout</a></li>
             </ul>
             
         </div>
@@ -44,23 +53,7 @@
     </nav>
     <div class="all-content">
     <main>
-    <?php
-    /*include 'db_conn.php';
-    session_start();
-    if(isset($_SESSION['TP_ID']) && isset($_SESSION['TP_Name'])){
-        ?>
-            <h1>Hello, <?php echo $_SESSION['TP_Name']; ?></h1>
-    <?php }  ?>
-        <div id="overview">
-        <?php
-        $current_TP_ID = $_SESSION['TP_ID']; 
-        $sql = "SELECT COUNT(*) AS course_count FROM course WHERE TP_ID = $current_TP_ID";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $courseCount = $row['course_count'];
-        */
-        ?>
-        <h1>Hello</h1>
+        <h1>Hello <?php echo $_SESSION['member_username']; ?></h1>
          <div id="overview">
             <h2 id="overview-header">Membership Information</h2>
             <div id="overview-main">
