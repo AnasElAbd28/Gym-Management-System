@@ -40,18 +40,17 @@
         <div id="main-content">
         
         <section id="form-sec">
-            <form action="tp_login.php" method="POST">
+            <form action="member_login.php" method="POST">
                 <input type="email" class="input" id="email" name="Email" placeholder="test@email.com" >
                 <input type="password" class="input" id="password" name="Password" placeholder="Enter your password" >
                 <input type="submit"  value="Submit" id="submit" />
-                <p>If you are an Student. Click here <a href="login_page.php">Student</a></p>
-                <p>If you are an Instructor. Click here <a href="instructor_login_page.php">Instructor</a></p>
+                
                 
             </form>
         </section>
     </div>
     <div id="logo">
-        <h2 id="logo-header">TPMS</h2>
+        <h2 id="logo-header">Gym System</h2>
         <p id="motto">We Strive for Excellence</p>
     </div>
     </main>
