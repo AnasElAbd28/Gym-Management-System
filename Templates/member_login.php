@@ -39,12 +39,12 @@ if(mysqli_num_rows($result) === 1){
         $_SESSION['reg_code'] = $row['reg_code'];
         $_SESSION['member_number'] = $row['member_number'];
         $_SESSION['points'] = $row['points'];
-        header("Location: landing.php");
+        header("Location: member_dashboard.php");
         exit();
     }else {
-        header("Location: login_page.php?error=Incorrect Email or Password" );
+        header("Location: member_login_page.php?error=Incorrect Email or Password" );
     }
 }else {
-    header("Location: login_page.php?error=Incorrect Email or Password" );
+    header("Location: member_login_page.php?error=Incorrect Email or Password" );
     exit();
 }
