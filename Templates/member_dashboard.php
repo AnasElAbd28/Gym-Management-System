@@ -88,9 +88,9 @@ $formatted_membership_end = date("d-m-Y", strtotime($membership_end));
         <div id="Course-Management">
             <h2 id="cm-header">Progress Tracking</h2>
             <div id="buttons-layout">
-            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="700" height="auto">
-            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="700" height="auto">
-            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="700" height="auto">
+            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="500" height="auto">
+            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="500" height="auto">
+            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="500" height="auto">
 </div>
         </div>
         
