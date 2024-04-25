@@ -5,8 +5,26 @@ session_start(); // Starting the session
 
 include 'db_conn.php';
 
-// Rest of your code
+// Retrieve the member ID from the session
+$member_id = $_SESSION['member_id'];
+
+// Query the database to get the membership start and end dates
+$sql = "SELECT membership_start, membership_end FROM membership WHERE member_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $member_id);
+$stmt->execute();
+$stmt->bind_result($membership_start, $membership_end);
+
+// Fetch the result
+$stmt->fetch();
+$stmt->close();
+
+// Format the dates if needed
+$formatted_membership_start = date("d-m-Y", strtotime($membership_start));
+$formatted_membership_end = date("d-m-Y", strtotime($membership_end));
 ?>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,23 +76,21 @@ include 'db_conn.php';
             <h2 id="overview-header">Membership Information</h2>
             <div id="overview-main">
             <div class="overview-section">
-                <h3>Membership Length</h3>
-                <h4 class="overview-values">1 month</h4>
-            </div>
-            <div class="overview-section">
-                <h3>Expiry Date</h3>
-                <h4 class="overview-values">19-9-2027</h4>
-            </div>
-            <div class="overview-section">
-                <h3>Days Left</h3>
-                <h4 class="overview-values">22</h4>
-            </div>
+                    <h3>Membership start date</h3>
+                    <h4 class="overview-values"><?php echo $formatted_membership_start; ?></h4>
+                </div>
+                <div class="overview-section">
+                    <h3>Membership end date</h3>
+                    <h4 class="overview-values"><?php echo $formatted_membership_end; ?></h4>
+                </div>
             </div>
         </div>
         <div id="Course-Management">
             <h2 id="cm-header">Progress Tracking</h2>
             <div id="buttons-layout">
-            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="700">
+            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="700" height="auto">
+            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="700" height="auto">
+            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="700" height="auto">
 </div>
         </div>
         
