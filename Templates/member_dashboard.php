@@ -22,7 +22,26 @@ $stmt->close();
 // Format the dates if needed
 $formatted_membership_start = date("d-m-Y", strtotime($membership_start));
 $formatted_membership_end = date("d-m-Y", strtotime($membership_end));
+
+// Query the database to fetch BMI data for the logged-in member
+$sql_bmi = "SELECT date, bmi FROM measurements WHERE member_id = ?";
+$stmt_bmi = $conn->prepare($sql_bmi);
+$stmt_bmi->bind_param("i", $member_id);
+$stmt_bmi->execute();
+$stmt_bmi->bind_result($measurement_date, $bmi);
+
+// Initialize arrays to store dates and BMI values
+$dates = array();
+$bmi_data = array();
+
+// Fetch BMI data and dates
+while ($stmt_bmi->fetch()) {
+    $dates[] = $measurement_date;
+    $bmi_data[] = $bmi;
+}
+$stmt_bmi->close();
 ?>
+
 
 
 <html lang="en">
@@ -38,6 +57,8 @@ $formatted_membership_end = date("d-m-Y", strtotime($membership_end));
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.css" />
+ <!-- Include Chart.js -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
 
     <title>Dashboard</title>
@@ -86,18 +107,54 @@ $formatted_membership_end = date("d-m-Y", strtotime($membership_end));
             </div>
         </div>
         <div id="Course-Management">
-            <h2 id="cm-header">Progress Tracking</h2>
-            <div id="buttons-layout">
-            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="500" height="auto">
-            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="500" height="auto">
-            <img src="https://idta.com.au/wp-content/uploads/2022/01/symmetrical-triangle-chart-patterns-example.webp" alt="" width="500" height="auto">
-</div>
+                <h2 id="cm-header">Progress Tracking</h2>
+                <!-- Chart container -->
+                <canvas id="bmiChart" width="400" height="200"></canvas>
+            </div>
         </div>
         
     </main>
     <footer>
 
     </footer>
+
+    <script>
+        // Use PHP arrays to pass data to JavaScript
+        const dates = <?php echo json_encode($dates); ?>;
+        const bmiData = <?php echo json_encode($bmi_data); ?>;
+
+        // Create a new Chart instance
+        const ctx = document.getElementById('bmiChart').getContext('2d');
+        const bmiChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates, // Use dates as labels
+                datasets: [{
+                    label: 'BMI',
+                    data: bmiData, // Use BMI data
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'BMI'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 
     <script src="../Javascript/app.js"></script>
     <script src="../Javascript/landing.js"></script>
