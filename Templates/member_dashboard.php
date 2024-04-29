@@ -70,7 +70,7 @@ $stmt_bmi->close();
         </a>
         <div>
             <ul class="nav-links">
-                <li><a href="#">Forum</a></li>
+                <li><a href="forum_feed.php">Forum</a></li>
                 <li><a href="#">Quick Form Check</a></li>
                 <li><a href="#">Quiz</a></li>
                 <li><a href="#">Schedule</a></li>

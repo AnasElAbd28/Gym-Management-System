@@ -1,5 +1,5 @@
 <?php
-include('includes/database.php'); // Include database connection file
+session_start();
 include 'db_conn.php'; // Include session management file
 
 // Check if an image is uploaded and handle it
@@ -25,7 +25,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK && !e
 }
 
 // Get post content
-$content = isset($_POST['content']) ? mysqli_real_escape_string($con, $_POST['content']) : "";
+$content = isset($_POST['content']) ? mysqli_real_escape_string($conn, $_POST['content']) : "";
 
 // Check if content exceeds 280 characters
 if (strlen($content) > 280) {
@@ -35,15 +35,15 @@ if (strlen($content) > 280) {
 }
 
 // Insert post data into the database
-$user = $_SESSION['id'];
+$user = $_SESSION['member_id'];
 $time = time();
 
 // Use prepared statement to insert post data into the database
-$stmt = $con->prepare("INSERT INTO post (user_id, post_image, content, created) VALUES (?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO post (member_id, post_image, content, created) VALUES (?, ?, ?, ?)");
 $stmt->bind_param("issi", $user, $location, $content, $time);
 if ($stmt->execute()) {
     // Post inserted successfully
-    header('location:home.php');
+    header('location:forum_feed.php');
     exit();
 } else {
     // Error inserting post data into the database
