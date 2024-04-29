@@ -1,7 +1,8 @@
 <?php
 // Include necessary files
-include ('session.php'); // Include session management file
+session_start();
 include 'db_conn.php'; // Include database connection file
+$current_id = $_SESSION['member_id'];
 
 // Check if the form for posting a comment has been submitted
 if (isset($_POST['post_comment'])) {
@@ -20,8 +21,8 @@ if (isset($_POST['post_comment'])) {
     }
 
     // Insert comment data into the database
-    mysqli_query($con, "INSERT INTO comments (post_id, user_id, name, content_comment, image, created)
-        VALUES ('$post_id', '$id', '$user_id', '$content_comment', '$profile_picture', '$time') ");
-    header('location:home.php'); // Redirect back to the home page after posting the comment
+    mysqli_query($conn, "INSERT INTO comments (post_id, member_id, name, content_comment, created)
+        VALUES ('$post_id', '$current_id', '$member_id', '$content_comment', '$time') ");
+    header('location:forum_feed.php'); // Redirect back to the home page after posting the comment
 }
 ?>
