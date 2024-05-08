@@ -24,7 +24,7 @@ $formatted_membership_start = date("d-m-Y", strtotime($membership_start));
 $formatted_membership_end = date("d-m-Y", strtotime($membership_end));
 
 // Query the database to fetch BMI data for the logged-in member
-$sql_bmi = "SELECT date, bmi FROM measurements WHERE member_id = ?";
+$sql_bmi = "SELECT measurement_date, bmi FROM measurements WHERE member_id = ?";
 $stmt_bmi = $conn->prepare($sql_bmi);
 $stmt_bmi->bind_param("i", $member_id);
 $stmt_bmi->execute();
