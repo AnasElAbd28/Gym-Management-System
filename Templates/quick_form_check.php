@@ -43,11 +43,18 @@
 
 <!-- Second Navigation Bar (new) -->
 <nav class="second-nav">
-    <ul>
+    <div>
+    <ul class = "nav-links">
         <li><a href="#">Link 1</a></li>
         <li><a href="#">Link 2</a></li>
         <li><a href="#">Link 3</a></li>
     </ul>
+    </div>
+    <div class="burger">
+        <div class="l1"></div>
+        <div class="l2"></div>
+        <div class="l3"></div>
+    </div>
 </nav>
     <div class="all-content">
     <main>
