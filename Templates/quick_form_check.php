@@ -62,7 +62,7 @@
         ?>
        <a href="qfc.php?id=<?php echo $row['qfc_id']; ?>">
           <div class="course">
-          <h5 class="course-name">id: <?php echo $row["qfc_id"]?></h5>
+            <h5 class="course-name"><?php echo $row["qfc_id"]?></h5>
             <h5 class="course-name">status: <?php echo $row["qfc_status"] ?></h5> 
 
         </div>
