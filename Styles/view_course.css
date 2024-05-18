@@ -1,0 +1,16 @@
+#courses-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+}
+.course {
+    margin-bottom: 20px;
+    text-align: center; /* Horizontally center */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center */
+}
+.course-name {
+    margin: 0; /* Remove default margin */
+}
