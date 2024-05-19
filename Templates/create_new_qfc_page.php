@@ -5,11 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/layout.css">
-    <link rel="stylesheet" href="../Styles/view_course.css">
     <link rel="stylesheet" href="../Styles/landing.css">
-    
-    
-  
+    <link rel="stylesheet" href="../Styles/create_course.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/3704673904.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +17,11 @@
     <title>Create Course</title>
 </head>
 <body>
-    <?php
+    <?php 
     include 'db_conn.php';
-    session_start() 
-    ?>
+    session_start(); 
+?>
+    <nav>
     <nav class="first-nav">
     <a href="tp_dashboard.php">
             <h2>Gym System</h2>
@@ -48,15 +46,12 @@
         <div class="l3"></div>
     </div>
 </nav>
-
-<!-- Second Navigation Bar (new) -->
 <nav class="second-nav">
     <div>
     <ul class = "nav-links">
-    <li><a href="create_new_qfc_page.php">Create new QFC</a></li>
+        <li><a href="create_new_qfc_page.php">Create new QFC</a></li>
         <li><a href="quick_form_check.php">Active</a></li>
         <li><a href="quick_form_check_complete.php">Completed</a></li>
-    </ul>
     </div>
     <div class="burger">
         <div class="l1"></div>
@@ -64,40 +59,42 @@
         <div class="l3"></div>
     </div>
 </nav>
+        
+        <div class="burger">
+            <div class="l1"></div>
+            <div class="l2"></div>
+            <div class="l3"></div>
+            
+        </div>
+    </nav>
     <div class="all-content">
     <main>
-    <h1>Active</h1>
-        <div id="courses-container">
-        <?php 
-    $sql = "SELECT * FROM qfc WHERE member_id = '" . $_SESSION["member_id"] . "' AND qfc_status = 'active'";
-    $result = mysqli_query($conn, $sql);
-    if ($result->num_rows > 0) {
-      // Output data of each row
-      while ($row = $result->fetch_assoc()) {
-        ?>
-       <a href="qfc.php?id=<?php echo $row['qfc_id']; ?>">
-          <div class="course">
-            <h5 class="course-name"><?php echo $row["qfc_id"]?></h5>
-            <h5 class="course-name"><?php echo $row["qfc_type"]?></h5>
-            <h5 class="course-name">status: <?php echo $row["qfc_status"] ?></h5>
 
-        </div>
-    </a>
-    <?php  }
-  } else {
-      echo "No courses found.";
-  }
-    ?>
-        </div>
-   
+        <div id="create-course-form">
+            <h2 id="create_course_headline">Create Course</h2>
+        <form action="create_new_qfc.php" method="POST">
+                <input type="text" class="input" id="qfc_title" name="qfc_title" placeholder="qfc title">
+                <input type="text" class="input" id="qfc_url" name="qfc_url" placeholder="qfc url" required>
+                <textarea class="input" id="qfc_description" name="qfc_description" rows="10" cols="50" placeholder="Description"></textarea>
+                <select class ="input" name="qfc_type" id="qfc_type">
+                    <option disabled selected>Type</option>
+                    <option value="Cardio">Cardio</option> 
+                    <option value="Weightlifting">Weightlifting</option> 
+                    <option value="Nutrition">Nutrition</option> 
+                </select>
+                <input type="submit"  value="Submit" id="submit" />
+                
+               
+            </form>
+           
         </div>
         
     </main>
     <footer>
 
     </footer>
-
+''
     <script src="../Javascript/app.js"></script>
     <script src="../Javascript/landing.js"></script>
-      </body>
+</body>
 </html>

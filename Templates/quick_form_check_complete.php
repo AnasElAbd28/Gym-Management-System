@@ -22,7 +22,7 @@
 <body>
     <?php
     include 'db_conn.php';
-    session_start() 
+    session_start(); 
     ?>
     <nav class="first-nav">
     <a href="tp_dashboard.php">
@@ -53,10 +53,9 @@
 <nav class="second-nav">
     <div>
     <ul class = "nav-links">
-    <li><a href="create_new_qfc_page.php">Create new QFC</a></li>
+        <li><a href="create_new_qfc_page.php">Create new QFC</a></li>
         <li><a href="quick_form_check.php">Active</a></li>
         <li><a href="quick_form_check_complete.php">Completed</a></li>
-    </ul>
     </div>
     <div class="burger">
         <div class="l1"></div>
@@ -66,10 +65,10 @@
 </nav>
     <div class="all-content">
     <main>
-    <h1>Active</h1>
+        <h1>Complete</h1>
         <div id="courses-container">
         <?php 
-    $sql = "SELECT * FROM qfc WHERE member_id = '" . $_SESSION["member_id"] . "' AND qfc_status = 'active'";
+    $sql = "SELECT * FROM qfc WHERE member_id = '" . $_SESSION["member_id"] . "' AND qfc_status = 'complete'";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
       // Output data of each row
@@ -79,13 +78,13 @@
           <div class="course">
             <h5 class="course-name"><?php echo $row["qfc_id"]?></h5>
             <h5 class="course-name"><?php echo $row["qfc_type"]?></h5>
-            <h5 class="course-name">status: <?php echo $row["qfc_status"] ?></h5>
+            <h5 class="course-name">status: <?php echo $row["qfc_status"] ?></h5> 
 
         </div>
     </a>
     <?php  }
   } else {
-      echo "No courses found.";
+      echo "No qfc found.";
   }
     ?>
         </div>

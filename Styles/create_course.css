@@ -1,0 +1,73 @@
+#create-course-form{
+    background-color: rgba(26, 97, 83, 0.267);
+    width: 700px;
+    height: 3000px;
+    border-radius: 15px;
+}
+#create_course_headline{
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form:first-child{
+    margin-top: 30px;
+}
+input,textarea{
+    margin-bottom: 20px
+}
+.input{
+    background-color: rgb(27, 25, 25);
+    border:none;
+    width: 60%;
+    height: 50px;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+}
+input[type="submit"]{
+    border-radius: 30px;
+    width: 120px;
+    height: 50px;
+    background-color:#14141b;
+    color: white;
+    font-size: 18px;
+    border: none;
+    margin-top: 20px;
+    padding: 30px;
+    padding-bottom: 40px;
+    text-align: center;
+
+}
+input[type="submit"]:hover{
+    height: 80px;
+ }
+input:hover,textarea:hover{
+    color: #14141b;
+    background-color: white;
+    transition: 0.25s ease-in-out;
+    cursor: pointer;
+}
+#course-description{
+    height: 100px;
+}
+
+.inst{
+    margin-top: 30px;
+    padding: 20px;
+    height: 50px;
+}
+
+.date-label{
+    color: white;
+    margin-right: 45px;
+}
