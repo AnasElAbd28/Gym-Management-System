@@ -105,6 +105,7 @@ body {
     }
     .first-nav .nav-links {
         right: 0;
+        background-color: rgb(26, 97, 83); /* Add background color */
         transform: translateX(100%);
     }
     .first-nav .nav-active {
@@ -112,6 +113,7 @@ body {
     }
     .second-nav .nav-links {
         left: 0;
+        background-color: rgba(26, 97, 83, 0.267); /* Add background color */
         transform: translateX(-100%);
     }
     .second-nav .nav-active {
@@ -186,6 +188,3 @@ body {
     position: absolute;
     left: 20px; /* Position the burger icon on the left */
 }
-
-
-
