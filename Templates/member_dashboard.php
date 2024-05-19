@@ -76,7 +76,7 @@ $stmt_bmi->close();
                 <li><a href="#">Schedule</a></li>
                 <li><a href="#">Virtual competiton</a></li>
                 <li><a href="#">recommended plan</a></li>
-                <li><a href="#">Chat</a></li>
+                <li><a href="chat.php">Chat</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="logout.php">logout</a></li>
             </ul>
