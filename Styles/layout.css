@@ -168,6 +168,7 @@ body {
     display: flex;
     justify-content: center;
     list-style-type: none;
+    width: 100%;
 }
 
 .second-nav li {
@@ -187,4 +188,18 @@ body {
 .second-nav .burger {
     position: absolute;
     left: 20px; /* Position the burger icon on the left */
+}
+
+/* Adjust the spacing for the side menus to match the normal view */
+.first-nav .nav-links li, 
+.second-nav .nav-links li {
+    padding: 30px; /* Adjust padding to match the normal view */
+}
+
+@media screen and (max-width: 1400px) {
+    .first-nav .nav-links li,
+    .second-nav .nav-links li {
+        padding: 30px 20px; /* Ensure padding is consistent in the side menu */
+        opacity: 1; /* Ensure visibility when nav is active */
+    }
 }
