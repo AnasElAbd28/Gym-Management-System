@@ -69,7 +69,7 @@
     <h1>Active</h1>
         <div id="courses-container">
         <?php 
-    $sql = "SELECT * FROM qfc WHERE member_id = '" . $_SESSION["member_id"] . "' AND qfc_status = 'active'";
+    $sql = "SELECT * FROM qfc WHERE user_id = '" . $_SESSION["id"] . "' AND qfc_status = 'active'";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
       // Output data of each row

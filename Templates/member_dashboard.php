@@ -6,7 +6,7 @@ session_start(); // Starting the session
 include 'db_conn.php';
 
 // Retrieve the member ID from the session
-$member_id = $_SESSION['member_id'];
+$member_id = $_SESSION['id'];
 
 // Query the database to get the membership start and end dates
 $sql = "SELECT membership_start, membership_end FROM membership WHERE member_id = ?";
@@ -92,7 +92,7 @@ $stmt_bmi->close();
     </nav>
     <div class="all-content">
     <main>
-        <h1>Hello <?php echo $_SESSION['member_username']; ?></h1>
+        <h1>Hello <?php echo $_SESSION['username']; ?></h1>
          <div id="overview">
             <h2 id="overview-header">Membership Information</h2>
             <div id="overview-main">
@@ -155,7 +155,25 @@ $stmt_bmi->close();
             }
         });
     </script>
+     <script type="text/javascript">
+    window.$crisp=[];window.CRISP_WEBSITE_ID="29a77fcc-c601-4802-a3fd-ce3a2e7008cb";
+    (function(){
+        d=document;
+        s=d.createElement("script");
+        s.src="https://client.crisp.chat/l.js";
+        s.async=1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+    })();
 
+    // Fetch user information and set Crisp attributes
+    fetch('config.php')
+        .then(response => response.json())
+        .then(user => {
+            $crisp.push(["set", "user:email", [user.email]]);
+            $crisp.push(["set", "user:nickname", [user.username]]);
+        })
+        .catch(error => console.error('Error fetching user data:', error));
+    </script>
     <script src="../Javascript/app.js"></script>
     <script src="../Javascript/landing.js"></script>
 </body>

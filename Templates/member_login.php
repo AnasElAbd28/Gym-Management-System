@@ -24,21 +24,19 @@ if(empty($email)){
     exit();
 }
 
-$sql = "SELECT * FROM member WHERE member_email ='$email' AND member_password = '$password'";
+$sql = "SELECT * FROM user WHERE user_email ='$email' AND user_password = '$password'";
 
 $result = mysqli_query($conn, $sql);
 
 if(mysqli_num_rows($result) === 1){
     $row = mysqli_fetch_assoc($result);
-    if($row['member_email'] === $email && $row['member_password'] === $password){
+    if($row['user_email'] === $email && $row['user_password'] === $password){
         echo "logged in";
-        $_SESSION['member_email'] = $row['member_email'];
-        $_SESSION['member_username'] = $row['member_username'];
-        $_SESSION['member_id'] = $row['member_id'];
-        $_SESSION['member_address'] = $row['member_address'];
-        $_SESSION['reg_code'] = $row['reg_code'];
-        $_SESSION['member_number'] = $row['member_number'];
-        $_SESSION['points'] = $row['points'];
+        $_SESSION['email'] = $row['user_email'];
+        $_SESSION['password'] = $row['user_password'];
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['id'] = $row['user_id'];
+        $_SESSION['number'] = $row['member_number'];
         header("Location: member_dashboard.php");
         exit();
     }else {
