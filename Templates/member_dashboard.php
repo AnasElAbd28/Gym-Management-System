@@ -72,7 +72,7 @@ $stmt_bmi->close();
             <ul class="nav-links">
                 <li><a href="forum_feed.php">Forum</a></li>
                 <li><a href="quick_form_check.php">Quick Form Check</a></li>
-                <li><a href="#">Quiz</a></li>
+                <li><a href="quizzes_page.php">Quiz</a></li>
                 <li><a href="#">Schedule</a></li>
                 <li><a href="#">Virtual competiton</a></li>
                 <li><a href="#">recommended plan</a></li>
