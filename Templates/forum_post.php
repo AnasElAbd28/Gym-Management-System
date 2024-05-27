@@ -35,11 +35,11 @@ if (strlen($content) > 280) {
 }
 
 // Insert post data into the database
-$user = $_SESSION['member_id'];
+$user = $_SESSION['id'];
 $time = time();
 
 // Use prepared statement to insert post data into the database
-$stmt = $conn->prepare("INSERT INTO post (member_id, post_image, content, created) VALUES (?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO post (user_id, post_image, content, created) VALUES (?, ?, ?, ?)");
 $stmt->bind_param("issi", $user, $location, $content, $time);
 if ($stmt->execute()) {
     // Post inserted successfully

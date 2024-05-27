@@ -87,7 +87,7 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
 
     <div class="container">
 
-    <h1>Hello <?php echo $_SESSION['member_username']; ?></h1>
+    <h1>Hello <?php echo $_SESSION['username']; ?></h1>
         
                 <form method="post" class="update-form" action="forum_post.php" enctype="multipart/form-data">
                 <h3>Add Forum Post</h3>
@@ -137,9 +137,9 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
         }
 
         // Fetch posts
-        $query = mysqli_query($conn, "SELECT * FROM post LEFT JOIN member ON member.member_id = post.member_id ORDER BY post_id DESC");
+        $query = mysqli_query($conn, "SELECT * FROM post LEFT JOIN user ON user.user_id = post.user_id ORDER BY post_id DESC");
         while ($row = mysqli_fetch_array($query)) {
-            $posted_by = $row['member_username'];
+            $posted_by = $row['username'];
             $location = $row['post_image'];
             $content = $row['content'];
             $post_id = $row['post_id'];
@@ -148,9 +148,9 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
             // Output post
             echo '<div class="post">';
             echo '<div class="post-header">';
-            echo '<a href="user_profile.php?id=' . $row['member_id'] . '"><h4 class="user-name">' . $posted_by . '</h4></a>';
+            echo '<a href="user_profile.php?id=' . $row['user_id'] . '"><h4 class="user-name">' . $posted_by . '</h4></a>';
             echo '<p>' . time_stamp($time) . '</p>';
-            if ($row['member_id'] == $_SESSION['member_id']) {
+            if ($row['user_id'] == $_SESSION['id']) {
                 echo '<div class="delete-post">';
                 echo '<button class ="share-button" class="btn-delete" onclick="confirmDeletePost(\'' . $post_id . '\')">X</button>';
                 echo '</div>';
@@ -166,8 +166,8 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
             while ($comment_row = mysqli_fetch_array($comment_query)) {
                 echo '<div class="comment">';
                 echo '<div class="comment-content-wrapper">';
-                echo '<a href="user_profile.php?id=' . $row['member_id'] . '" style="font-size: 17px;"><h4 class="user-name">' . $comment_row['name'] . '</a> <span>' . time_stamp($comment_row['created']) . '</span>';
-                if ($comment_row['member_id'] == $_SESSION['member_id']) {
+                echo '<a href="user_profile.php?id=' . $row['user_id'] . '" style="font-size: 17px;"><h4 class="user-name">' . $comment_row['name'] . '</a> <span>' . time_stamp($comment_row['created']) . '</span>';
+                if ($comment_row['user_id'] == $_SESSION['id']) {
                     echo '<button class="share-button btn-delete" style="font-size: 10px; padding: 5px 10px;" onclick="confirmDeleteComment(\'' . $comment_row['comment_id'] . '\')">X</button>';
                 }
 echo '</h4>';
@@ -181,7 +181,7 @@ echo '</h4>';
             echo '<form class="comment-form" method="POST" action="forum_comment.php">';
             echo '<input type="text" placeholder="Write your comment..." name="content_comment" class="comment-input">';
             echo '<input type="hidden" name="post_id" value="' . $post_id . '">';
-            echo '<input type="hidden" name="user_id" value="' . $_SESSION['member_username'] . '">';
+            echo '<input type="hidden" name="user_id" value="' . $_SESSION['username'] . '">';
             echo '<button type="submit" name="post_comment" class="comment-button">Comment</button>';
             echo '</form>';
 
