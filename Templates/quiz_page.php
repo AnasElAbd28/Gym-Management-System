@@ -205,9 +205,9 @@ while ($row = $questions_result->fetch_assoc()) {
     <title>Dashboard</title>
 </head>
 <body>
-    <nav>
+<nav class="first-nav">
     <a href="tp_dashboard.php">
-            <h2>Gym System</h2>
+            <h2>Pygmalion</h2>
         </a>
         <div>
             <ul class="nav-links">
@@ -223,14 +223,12 @@ while ($row = $questions_result->fetch_assoc()) {
             </ul>
             
         </div>
-        
-        <div class="burger">
-            <div class="l1"></div>
-            <div class="l2"></div>
-            <div class="l3"></div>
-            
-        </div>
-    </nav>
+    <div class="burger">
+        <div class="l1"></div>
+        <div class="l2"></div>
+        <div class="l3"></div>
+    </div>
+</nav>
     <div class="all-content">
     <main>
     <form method="POST" action="quiz_attempt.php?id=<?php echo $quiz_id; ?>">

@@ -15,7 +15,7 @@
 <body>
     <nav>
         <a href="#">
-            <h2>TPMS</h2>
+            <h2>Pygmalion</h2>
         </a>
         <div>
             <ul class="nav-links">
@@ -34,7 +34,7 @@
     <div class="all-content">
     <section id="text-sec">
         <p id="login-text">Login to your account</p>
-        <p id="promotion">Training Provider Login</p>
+        <p id="promotion">Member Login</p>
     </section>
     <main>
         <div id="main-content">
@@ -50,7 +50,7 @@
         </section>
     </div>
     <div id="logo">
-        <h2 id="logo-header">Gym System</h2>
+        <h2 id="logo-header">Pygmalion</h2>
         <p id="motto">We Strive for Excellence</p>
     </div>
     </main>

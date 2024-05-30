@@ -16,19 +16,19 @@ function time_stamp($session_time)
     $years = round($time_difference / 29030400); 
 
     if ($seconds <= 60) {
-        echo "$seconds seconds ago"; 
+        return "$seconds seconds ago"; 
     } elseif ($minutes <= 60) {
-        echo ($minutes == 1) ? "one minute ago" : "$minutes minutes ago"; 
+        return ($minutes == 1) ? "one minute ago" : "$minutes minutes ago"; 
     } elseif ($hours <= 24) {
-        echo ($hours == 1) ? "one hour ago" : "$hours hours ago";
+        return ($hours == 1) ? "one hour ago" : "$hours hours ago";
     } elseif ($days <= 7) {
-        echo ($days == 1) ? "one day ago" : "$days days ago";
+        return ($days == 1) ? "one day ago" : "$days days ago";
     } elseif ($weeks <= 4) {
-        echo ($weeks == 1) ? "one week ago" : "$weeks weeks ago";
+        return ($weeks == 1) ? "one week ago" : "$weeks weeks ago";
     } elseif ($months <= 12) {
-        echo ($months == 1) ? "one month ago" : "$months months ago";
+        return ($months == 1) ? "one month ago" : "$months months ago";
     } else {
-        echo ($years == 1) ? "one year ago" : "$years years ago";
+        return ($years == 1) ? "one year ago" : "$years years ago";
     }
 } 
 
@@ -59,31 +59,30 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
 </head>
 
 <body>
-<nav>
-        <a href="member_dashboard.php">
-            <h2>FriendZone</h2>
+<nav class="first-nav">
+    <a href="tp_dashboard.php">
+            <h2>Gym System</h2>
         </a>
         <div>
             <ul class="nav-links">
-            <ul class="nav-links">
                 <li><a href="forum_feed.php">Forum</a></li>
-                <li><a href="#">Quick Form Check</a></li>
-                <li><a href="#">Quiz</a></li>
+                <li><a href="quick_form_check.php">Quick Form Check</a></li>
+                <li><a href="quizzes_page.php">Quiz</a></li>
                 <li><a href="#">Schedule</a></li>
                 <li><a href="#">Virtual competiton</a></li>
                 <li><a href="#">recommended plan</a></li>
-                <li><a href="#">Chat</a></li>
+                <li><a href="chat.php">Chat</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="logout.php">logout</a></li>
             </ul>
-            </ul>
+            
         </div>
-        <div class="burger">
-            <div class="l1"></div>
-            <div class="l2"></div>
-            <div class="l3"></div>
-        </div>
-    </nav>
+    <div class="burger">
+        <div class="l1"></div>
+        <div class="l2"></div>
+        <div class="l3"></div>
+    </div>
+</nav>
 
     <div class="container">
 
@@ -162,15 +161,15 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
             }
 
             // Fetch comments for this post
-            $comment_query = mysqli_query($conn, "SELECT * FROM comments WHERE post_id='$post_id' ORDER BY created DESC");
+            $comment_query = mysqli_query($conn, "SELECT * FROM comments LEFT JOIN user ON user.user_id = comments.user_id WHERE post_id='$post_id' ORDER BY comments.created DESC");
             while ($comment_row = mysqli_fetch_array($comment_query)) {
                 echo '<div class="comment">';
                 echo '<div class="comment-content-wrapper">';
-                echo '<a href="user_profile.php?id=' . $row['user_id'] . '" style="font-size: 17px;"><h4 class="user-name">' . $comment_row['name'] . '</a> <span>' . time_stamp($comment_row['created']) . '</span>';
+                echo '<a href="user_profile.php?id=' . $comment_row['user_id'] . '" style="font-size: 17px;"><h4 class="user-name">' . $comment_row['username'] . '</a> <span>' . time_stamp($comment_row['created']) . '</span>';
                 if ($comment_row['user_id'] == $_SESSION['id']) {
                     echo '<button class="share-button btn-delete" style="font-size: 10px; padding: 5px 10px;" onclick="confirmDeleteComment(\'' . $comment_row['comment_id'] . '\')">X</button>';
                 }
-echo '</h4>';
+                echo '</h4>';
                 
                 echo '<p class="comment-content">' . $comment_row['content_comment'] . '</p>';
                 echo '</div>'; // Close comment-content-wrapper
