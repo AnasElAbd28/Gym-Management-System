@@ -61,7 +61,7 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
 <body>
 <nav class="first-nav">
     <a href="tp_dashboard.php">
-            <h2>Gym System</h2>
+            <h2>Pygmalion</h2>
         </a>
         <div>
             <ul class="nav-links">
