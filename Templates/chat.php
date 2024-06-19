@@ -29,8 +29,8 @@ $row = mysqli_fetch_assoc($result);
 ?>
 
 <nav class="first-nav">
-    <a href="tp_dashboard.php">
-            <h2>Gym System</h2>
+<a href="member_dashboard.php">
+            <h2>Pygmalion</h2>
         </a>
         <div>
             <ul class="nav-links">
@@ -75,5 +75,7 @@ $row = mysqli_fetch_assoc($result);
   </div>
 
   <script src="../Javascript/chat.js"></script>
+  <script src="../Javascript/app.js"></script>
+  <script src="../Javascript/landing.js"></script>
 </body>
 </html>

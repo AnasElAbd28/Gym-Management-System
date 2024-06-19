@@ -65,7 +65,7 @@ $stmt_bmi->close();
 </head>
 <body>
 <nav class="first-nav">
-    <a href="tp_dashboard.php">
+    <a href="member_dashboard.php">
             <h2>Pygmalion</h2>
         </a>
         <div>
@@ -152,25 +152,7 @@ $stmt_bmi->close();
             }
         });
     </script>
-     <script type="text/javascript">
-    window.$crisp=[];window.CRISP_WEBSITE_ID="29a77fcc-c601-4802-a3fd-ce3a2e7008cb";
-    (function(){
-        d=document;
-        s=d.createElement("script");
-        s.src="https://client.crisp.chat/l.js";
-        s.async=1;
-        d.getElementsByTagName("head")[0].appendChild(s);
-    })();
-
-    // Fetch user information and set Crisp attributes
-    fetch('config.php')
-        .then(response => response.json())
-        .then(user => {
-            $crisp.push(["set", "user:email", [user.email]]);
-            $crisp.push(["set", "user:nickname", [user.username]]);
-        })
-        .catch(error => console.error('Error fetching user data:', error));
-    </script>
+    
     <script src="../Javascript/app.js"></script>
     <script src="../Javascript/landing.js"></script>
 </body>

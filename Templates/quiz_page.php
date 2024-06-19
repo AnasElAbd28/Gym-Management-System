@@ -206,7 +206,7 @@ while ($row = $questions_result->fetch_assoc()) {
 </head>
 <body>
 <nav class="first-nav">
-    <a href="tp_dashboard.php">
+<a href="member_dashboard.php">
             <h2>Pygmalion</h2>
         </a>
         <div>
