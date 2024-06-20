@@ -76,7 +76,7 @@ $stmt_bmi->close();
                 <li><a href="schedule_plan.php">Schedule</a></li>
                 <li><a href="recommended_plan.php">recommended plan</a></li>
                 <li><a href="chat.php">Chat</a></li>
-                <li><a href="profile.php">Profile</a></li>
+                <li><a href="member_profile.php">Profile</a></li>
                 <li><a href="logout.php">logout</a></li>
             </ul>
             

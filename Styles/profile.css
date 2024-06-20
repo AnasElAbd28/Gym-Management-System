@@ -1,0 +1,91 @@
+#headline {
+    font-size: 50px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  
+  #promotion {
+    font-size: 20px;
+    color: #9fa0a4;
+  }
+  
+  .profile-container {
+    background-color: rgba(26, 97, 83, 0.267);
+    width: 600px;
+    height: auto;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(26, 97, 83, 0.445);
+  }
+  
+  .profile-container:hover {
+    width: 700px;
+    transition: all 0.5s;
+  }
+  
+  .profile-field {
+    margin-bottom: 20px;
+  }
+  
+  .profile-field label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color:white;
+  }
+  
+  .profile-data {
+    background-color: rgb(27, 25, 25);
+    color: white;
+    width: 60%;
+    height: 50px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+  }
+  
+  .profile-button {
+    border-radius: 30px;
+    width: 120px;
+    height: 50px;
+    background-color: #14141b;
+    color: white;
+    font-size: 18px;
+    border: none;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .profile-button:hover {
+    height: 80px;
+  }
+  
+  .profile-data:hover {
+    color: #14141b;
+    background-color: white;
+    transition: 0.25s ease-in-out;
+    cursor: pointer;
+  }
+  
+  @media screen and (min-width: 1400px) {
+    #headline {
+      font-size: 100px;
+    }
+  
+    #promotion {
+      font-size: 30px;
+    }
+  
+    .profile-container {
+      justify-content: center;
+    }
+  }
+  
+  @media screen and (max-width: 1400px) {
+    .all-content {
+      margin-top: 0;
+    }
+  }
+  
