@@ -6,6 +6,20 @@ session_start(); // Starting the session
 include 'db_conn.php';
 $QfcID = $_GET['id'];
 
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $feedback = $_POST['feedback'];
+    $trainer_id = $_SESSION['id'];
+
+    $update_sql = "UPDATE qfc SET qfc_feedback = ?, qfc_status = 'complete', trainer_replied = ? WHERE qfc_id = ?";
+    $update_stmt = mysqli_prepare($conn, $update_sql);
+    if ($update_stmt) {
+        mysqli_stmt_bind_param($update_stmt, "sii", $feedback, $trainer_id, $QfcID);
+        mysqli_stmt_execute($update_stmt);
+        mysqli_stmt_close($update_stmt);
+    }
+}
+
 ?>
 
 <html lang="en">
@@ -31,14 +45,8 @@ $QfcID = $_GET['id'];
     </a>
     <div>
         <ul class="nav-links">
-            <li><a href="forum_feed.php">Forum</a></li>
-            <li><a href="quick_form_check.php">Quick Form Check</a></li>
-            <li><a href="quizzes_page.php">Quiz</a></li>
-            <li><a href="#">Schedule</a></li>
-            <li><a href="#">Virtual Competition</a></li>
-            <li><a href="#">Recommended Plan</a></li>
+            <li><a href="trainer_quick_form_check.php">Quick Form Check</a></li>
             <li><a href="chat.php">Chat</a></li>
-            <li><a href="#">Profile</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
@@ -92,15 +100,13 @@ $QfcID = $_GET['id'];
                 <h2 id="overview-header">Feedback</h2>
                 <div id="overview-main">
                     <div class="overview-section">
-                        <h4 class="overview-values">
-                            <?php 
-                            if (empty($row['feedback'])) {
-                                echo "No feedback yet";
-                            } else {
-                                echo $row['qfc_feedback'];
-                            }
-                            ?>
-                        </h4>
+                        <form method="POST">
+                            <textarea name="feedback" class="feedback-textarea" placeholder="Enter feedback here" rows="10" cols="50"><?php echo isset($row['qfc_feedback']) ? $row['qfc_feedback'] : ''; ?></textarea>
+                    </div>
+                    <div class="overview-section">
+                            <button type="submit">Save</button>
+        </div>
+                        </form>
                     </div>
                 </div>
             </div>

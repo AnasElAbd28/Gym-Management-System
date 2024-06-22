@@ -26,22 +26,15 @@
     ?>
     <nav class="first-nav">
     <a href="member_dashboard.php">
-            <h2>Pygmalion</h2>
-        </a>
-        <div>
-            <ul class="nav-links">
-                <li><a href="forum_feed.php">Forum</a></li>
-                <li><a href="quick_form_check.php">Quick Form Check</a></li>
-                <li><a href="quizzes_page.php">Quiz</a></li>
-                <li><a href="#">Schedule</a></li>
-                <li><a href="#">Virtual competiton</a></li>
-                <li><a href="#">recommended plan</a></li>
-                <li><a href="chat.php">Chat</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="logout.php">logout</a></li>
-            </ul>
-            
-        </div>
+        <h2>Pygmalion</h2>
+    </a>
+    <div>
+        <ul class="nav-links">
+            <li><a href="trainer_quick_form_check.php">Quick Form Check</a></li>
+            <li><a href="chat.php">Chat</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
     <div class="burger">
         <div class="l1"></div>
         <div class="l2"></div>
@@ -53,9 +46,8 @@
 <nav class="second-nav">
     <div>
     <ul class = "nav-links">
-    <li><a href="create_new_qfc_page.php">Create new QFC</a></li>
-        <li><a href="quick_form_check.php">Active</a></li>
-        <li><a href="quick_form_check_complete.php">Completed</a></li>
+        <li><a href="trainer_quick_form_check.php">Active</a></li>
+        <li><a href="trainer_quick_form_check_complete.php">Completed</a></li>
     </ul>
     </div>
     <div class="burger">
@@ -69,13 +61,13 @@
     <h1>Active</h1>
         <div id="courses-container">
         <?php 
-    $sql = "SELECT * FROM qfc WHERE user_id = '" . $_SESSION["id"] . "' AND qfc_status = 'active'";
+    $sql = "SELECT * FROM qfc WHERE qfc_status = 'active'";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
       // Output data of each row
       while ($row = $result->fetch_assoc()) {
         ?>
-       <a href="qfc.php?id=<?php echo $row['qfc_id']; ?>">
+       <a href="trainer_qfc.php?id=<?php echo $row['qfc_id']; ?>">
           <div class="course">
             <h5 class="course-name"><?php echo $row["qfc_id"]?></h5>
             <h5 class="course-name"><?php echo $row["qfc_type"]?></h5>
@@ -85,7 +77,7 @@
     </a>
     <?php  }
   } else {
-      echo "No QFC found.";
+      echo "No courses found.";
   }
     ?>
         </div>
