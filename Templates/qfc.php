@@ -94,7 +94,7 @@ $QfcID = $_GET['id'];
                     <div class="overview-section">
                         <h4 class="overview-values">
                             <?php 
-                            if (empty($row['feedback'])) {
+                            if (empty($row['qfc_feedback'])) {
                                 echo "No feedback yet";
                             } else {
                                 echo $row['qfc_feedback'];
