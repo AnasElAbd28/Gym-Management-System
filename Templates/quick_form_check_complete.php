@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.css" />
 <script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
 
-    <title>Create Course</title>
+    <title>Completed QFC</title>
 </head>
 <body>
     <?php

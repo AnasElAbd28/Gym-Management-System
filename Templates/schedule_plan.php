@@ -41,7 +41,7 @@ $result = $stmt->get_result();
 <body>
 <nav class="first-nav">
 <a href="member_dashboard.php">
-            <h2>Pygmalion</h2>
+            <h2>Monday</h2>
         </a>
     <div>
         <ul class="nav-links">

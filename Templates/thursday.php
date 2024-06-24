@@ -36,7 +36,7 @@ $result = $stmt->get_result();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
 
-    <title>Tuesday</title>
+    <title>Thursday</title>
 </head>
 <body>
 <nav class="first-nav">

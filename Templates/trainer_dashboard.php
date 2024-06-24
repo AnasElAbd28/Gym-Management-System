@@ -30,7 +30,7 @@ $member_id = $_SESSION['id'];
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
 
-    <title>Dashboard</title>
+    <title>Trainer Dashboard</title>
 </head>
 <body>
 <nav class="first-nav">

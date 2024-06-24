@@ -34,13 +34,13 @@
     <div class="all-content">
     <section id="text-sec">
         <p id="login-text">Login to your account</p>
-        <p id="promotion">Member Login</p>
+        <p id="promotion">Login</p>
     </section>
     <main>
         <div id="main-content">
         
         <section id="form-sec">
-            <form action="member_login.php" method="POST">
+            <form action="login.php" method="POST">
                 <input type="email" class="input" id="email" name="Email" placeholder="test@email.com" >
                 <input type="password" class="input" id="password" name="Password" placeholder="Enter your password" >
                 <input type="submit"  value="Submit" id="submit" />

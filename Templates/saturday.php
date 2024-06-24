@@ -36,7 +36,7 @@ $result = $stmt->get_result();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
 
-    <title>Tuesday</title>
+    <title>Saturday</title>
 </head>
 <body>
 <nav class="first-nav">
@@ -49,7 +49,6 @@ $result = $stmt->get_result();
             <li><a href="quick_form_check.php">Quick Form Check</a></li>
             <li><a href="quizzes_page.php">Quiz</a></li>
             <li><a href="#">Schedule</a></li>
-            <li><a href="#">Virtual competition</a></li>
             <li><a href="#">Recommended plan</a></li>
             <li><a href="chat.php">Chat</a></li>
             <li><a href="#">Profile</a></li>

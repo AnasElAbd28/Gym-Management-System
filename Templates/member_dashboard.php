@@ -42,8 +42,6 @@ while ($stmt_bmi->fetch()) {
 $stmt_bmi->close();
 ?>
 
-
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">

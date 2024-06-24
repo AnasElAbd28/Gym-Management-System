@@ -166,7 +166,7 @@ $workout_plan = generate_workout_plan($weight, $height, $bmi, $age, $goal);
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
 
-    <title>Dashboard</title>
+    <title>Recommended Plan</title>
 </head>
 <body>
 <nav class="first-nav">

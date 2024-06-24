@@ -10,15 +10,28 @@ if (!isset($_SESSION['id'])) {
 $user_id = $_SESSION['id'];
 
 // Fetch user details
-$userQuery = "SELECT username, user_email, user_number FROM user WHERE user_id = $user_id";
+$userQuery = "SELECT username, user_email, user_number, points FROM user WHERE user_id = $user_id";
 $userResult = mysqli_query($conn, $userQuery);
 if ($userResult) {
     $userDetails = mysqli_fetch_assoc($userResult);
     $username = $userDetails['username'];
     $email = $userDetails['user_email'];
     $phoneNumber = $userDetails['user_number'];
+    $points = $userDetails['points'];
 } else {
     die("Query failed: " . mysqli_error($conn));
+}
+
+// Determine discount message
+$discountMessage = '';
+if ($points >= 0 && $points <= 19) {
+    $discountMessage = 'No discount yet';
+} elseif ($points >= 20 && $points <= 39) {
+    $discountMessage = 'You get a 5% discount!';
+} elseif ($points >= 40 && $points <= 59) {
+    $discountMessage = 'You get a 10% discount!';
+} elseif ($points >= 60) {
+    $discountMessage = 'You get a 15% discount!';
 }
 
 // Fetch latest measurement
@@ -99,7 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </nav>
 <div class="all-content">
     <main>
-       
         <h1 id="headline">Profile Information</h1>
         <div class="profile-container">
             <form method="POST" action="member_profile.php">
@@ -114,6 +126,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="profile-field">
                     <label for="phone">Phone Number:</label>
                     <div class="profile-data"><?php echo htmlspecialchars($phoneNumber); ?></div>
+                </div>
+                <div class="profile-field">
+                    <label for="phone">Points:</label>
+                    <div class="profile-data"><?php echo htmlspecialchars($points); ?></div>
+                    <div><h3 style="color: white;"><?php echo htmlspecialchars($discountMessage); ?><h3></div>
                 </div>
                 <div class="profile-field">
                     <label for="age">Age:</label>
@@ -177,4 +194,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="../Javascript/landing.js"></script>
 </body>
 </html>
+
 

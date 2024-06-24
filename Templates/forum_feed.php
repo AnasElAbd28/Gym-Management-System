@@ -41,7 +41,7 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
 <html>
 
 <head>
-    <title>Friendzone</title>
+    <title>Forum</title>
     <link rel="stylesheet" type="text/css" href="../Styles/layout2.css">
     <script>
         function confirmDeletePost(postId) {

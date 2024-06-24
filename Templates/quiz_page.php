@@ -202,7 +202,7 @@ while ($row = $questions_result->fetch_assoc()) {
   <link rel="stylesheet" href="../Styles/layout.css">
   <link rel="stylesheet" href="../Styles/landing.css">
     <link rel="stylesheet" href="../Styles/member_dashboard_style.css">
-    <title>Dashboard</title>
+    <title>Quiz Page</title>
 </head>
 <body>
 <nav class="first-nav">
