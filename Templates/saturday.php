@@ -12,7 +12,7 @@ $member_id = $_SESSION['id'];
 $day_of_week = 'Saturday';
 
 // Query to get workouts for Tuesday for the logged-in user
-$query = "SELECT workout_name, description FROM schedule WHERE user_id = ? AND day_of_week = ?";
+$query = "SELECT schedule_pk, workout_name, description FROM schedule WHERE user_id = ? AND day_of_week = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("is", $member_id, $day_of_week);
 $stmt->execute();
@@ -37,24 +37,32 @@ $result = $stmt->get_result();
     <script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
 
     <title>Saturday</title>
+    <script>
+        function confirmDelete(workoutId) {
+            if (confirm("Are you sure you want to delete this workout?")) {
+                window.location.href = "delete_workout.php?schedule_pk=" + workoutId;
+            }
+        }
+    </script>
 </head>
 <body>
 <nav class="first-nav">
-<a href="member_dashboard.php">
+    <a href="member_dashboard.php">
             <h2>Pygmalion</h2>
         </a>
-    <div>
-        <ul class="nav-links">
-            <li><a href="forum_feed.php">Forum</a></li>
-            <li><a href="quick_form_check.php">Quick Form Check</a></li>
-            <li><a href="quizzes_page.php">Quiz</a></li>
-            <li><a href="#">Schedule</a></li>
-            <li><a href="#">Recommended plan</a></li>
-            <li><a href="chat.php">Chat</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
-    </div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="forum_feed.php">Forum</a></li>
+                <li><a href="quick_form_check.php">Quick Form Check</a></li>
+                <li><a href="quizzes_page.php">Quiz</a></li>
+                <li><a href="schedule_plan.php">Schedule</a></li>
+                <li><a href="recommended_plan.php">recommended plan</a></li>
+                <li><a href="chat.php">Chat</a></li>
+                <li><a href="member_profile.php">Profile</a></li>
+                <li><a href="logout.php">logout</a></li>
+            </ul>
+            
+        </div>
     <div class="burger">
         <div class="l1"></div>
         <div class="l2"></div>
@@ -64,6 +72,7 @@ $result = $stmt->get_result();
 <nav class="second-nav">
     <div>
         <ul class="nav-links">
+            <li><a href="add_workout.php" style="color: red">Add Workout</a></li>
             <li><a href="schedule_plan.php">Monday</a></li>
             <li><a href="tuesday.php">Tuesday</a></li>
             <li><a href="wednesday.php">Wednesday</a></li>
@@ -91,6 +100,7 @@ $result = $stmt->get_result();
                 echo "<div class='overview-section'>";
                 echo "<h3>" . htmlspecialchars($row['workout_name']) . "</h3>";
                 echo "<h4 class='overview-values'>" . htmlspecialchars($row['description']) . "</h4>";
+                echo "<button onclick='confirmDelete(" . $row['schedule_pk'] . ")'>Delete</button>";
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";

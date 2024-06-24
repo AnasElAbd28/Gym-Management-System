@@ -26,7 +26,7 @@ session_start();
 
 <body>
 <nav class="first-nav">
-<a href="member_dashboard.php">
+    <a href="member_dashboard.php">
             <h2>Pygmalion</h2>
         </a>
         <div>
@@ -34,11 +34,10 @@ session_start();
                 <li><a href="forum_feed.php">Forum</a></li>
                 <li><a href="quick_form_check.php">Quick Form Check</a></li>
                 <li><a href="quizzes_page.php">Quiz</a></li>
-                <li><a href="#">Schedule</a></li>
-                <li><a href="#">Virtual competiton</a></li>
-                <li><a href="#">recommended plan</a></li>
+                <li><a href="schedule_plan.php">Schedule</a></li>
+                <li><a href="recommended_plan.php">recommended plan</a></li>
                 <li><a href="chat.php">Chat</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="member_profile.php">Profile</a></li>
                 <li><a href="logout.php">logout</a></li>
             </ul>
             
@@ -49,21 +48,7 @@ session_start();
         <div class="l3"></div>
     </div>
 </nav>
-    <!-- Second Navigation Bar (new) -->
-    <nav class="second-nav">
-        <div>
-            <ul class="nav-links">
-                <li><a href="create_new_qfc_page.php">Create new QFC</a></li>
-                <li><a href="quick_form_check.php">Active</a></li>
-                <li><a href="quick_form_check_complete.php">Completed</a></li>
-            </ul>
-        </div>
-        <div class="burger">
-            <div class="l1"></div>
-            <div class="l2"></div>
-            <div class="l3"></div>
-        </div>
-    </nav>
+    
     <div class="all-content">
         <main>
             <h1>Active</h1>

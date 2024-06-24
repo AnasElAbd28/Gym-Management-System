@@ -30,12 +30,11 @@
             <ul class="nav-links">
                 <li><a href="forum_feed.php">Forum</a></li>
                 <li><a href="quick_form_check.php">Quick Form Check</a></li>
-                <li><a href="#">Quiz</a></li>
-                <li><a href="#">Schedule</a></li>
-                <li><a href="#">Virtual competiton</a></li>
-                <li><a href="#">recommended plan</a></li>
-                <li><a href="#">Chat</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="quizzes_page.php">Quiz</a></li>
+                <li><a href="schedule_plan.php">Schedule</a></li>
+                <li><a href="recommended_plan.php">recommended plan</a></li>
+                <li><a href="chat.php">Chat</a></li>
+                <li><a href="member_profile.php">Profile</a></li>
                 <li><a href="logout.php">logout</a></li>
             </ul>
             
@@ -71,7 +70,7 @@
     <main>
 
         <div id="create-course-form">
-            <h2 id="create_course_headline">Create Course</h2>
+            <h2 id="create_course_headline">Creat new QFC</h2>
         <form action="create_new_qfc.php" method="POST">
                 <input type="text" class="input" id="qfc_title" name="qfc_title" placeholder="qfc title">
                 <input type="text" class="input" id="qfc_url" name="qfc_url" placeholder="qfc url" required>
