@@ -96,20 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="l3"></div>
         </div>
     </nav>
-    <nav class="second-nav">
-        <div>
-            <ul class="nav-links">
-                <li><a href="create_new_qfc_page.php">Create new QFC</a></li>
-                <li><a href="quick_form_check.php">Active</a></li>
-                <li><a href="quick_form_check_complete.php">Completed</a></li>
-            </ul>
-        </div>
-        <div class="burger">
-            <div class="l1"></div>
-            <div class="l2"></div>
-            <div class="l3"></div>
-        </div>
-    </nav>
     <div class="all-content">
         <main>
             <div id="create-course-form">

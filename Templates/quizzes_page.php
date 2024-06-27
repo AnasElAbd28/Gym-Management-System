@@ -51,7 +51,7 @@ session_start();
     
     <div class="all-content">
         <main>
-            <h1>Active</h1>
+            <h1>Quiz</h1>
             <div id="courses-container">
                 <?php
                 $sql = "SELECT quizzes.quiz_id, quizzes.quiz_title, 
