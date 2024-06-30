@@ -15,14 +15,14 @@ if(isset($_POST['Email']) && isset($_POST['Password'])){
     $password = validate($_POST['Password']);
 
     if(empty($email)){
-        header ("Location: member_login_page.php?error=Email is required");
+        header("Location: login_page.php?error=Email is required");
         exit();
     } elseif(empty($password)){
-        header ("Location: member)_login_page.php?error=Password is required");
+        header("Location: login_page.php?error=Password is required");
         exit();
     }
 
-    $sql = "SELECT * FROM user WHERE user_email ='$email' AND user_password = '$password'";
+    $sql = "SELECT * FROM user WHERE user_email = '$email' AND user_password = '$password'";
 
     $result = mysqli_query($conn, $sql);
 

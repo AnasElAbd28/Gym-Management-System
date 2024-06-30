@@ -14,10 +14,10 @@ $userQuery = "SELECT username, user_email, user_number, points FROM user WHERE u
 $userResult = mysqli_query($conn, $userQuery);
 if ($userResult) {
     $userDetails = mysqli_fetch_assoc($userResult);
-    $username = $userDetails['username'];
-    $email = $userDetails['user_email'];
-    $phoneNumber = $userDetails['user_number'];
-    $points = $userDetails['points'];
+    $username = $userDetails['username'] ?? 'N/A';
+    $email = $userDetails['user_email'] ?? 'N/A';
+    $phoneNumber = $userDetails['user_number'] ?? 'N/A';
+    $points = $userDetails['points'] ?? 0;
 } else {
     die("Query failed: " . mysqli_error($conn));
 }
@@ -39,11 +39,11 @@ $measurementQuery = "SELECT age, height, bmi, weight, goal FROM measurements WHE
 $measurementResult = mysqli_query($conn, $measurementQuery);
 if ($measurementResult) {
     $latestMeasurement = mysqli_fetch_assoc($measurementResult);
-    $age = $latestMeasurement['age'];
-    $height = $latestMeasurement['height'];
-    $bmi = $latestMeasurement['bmi'];
-    $weight = $latestMeasurement['weight'];
-    $goal = $latestMeasurement['goal'];
+    $age = $latestMeasurement['age'] ?? '';
+    $height = $latestMeasurement['height'] ?? '';
+    $bmi = $latestMeasurement['bmi'] ?? '';
+    $weight = $latestMeasurement['weight'] ?? '';
+    $goal = $latestMeasurement['goal'] ?? '';
 } else {
     die("Query failed: " . mysqli_error($conn));
 }
@@ -60,13 +60,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert new measurement record
     $insertQuery = "INSERT INTO measurements (age, height, bmi, weight, goal, member_id, measurement_date) VALUES ($newAge, $newHeight, $newBmi, $newWeight, '$newGoal', $user_id, '$currentDate')";
-    if (!mysqli_query($conn, $insertQuery)) {
+    if (mysqli_query($conn, $insertQuery)) {
+        $_SESSION['success_message'] = "Profile updated successfully!";
+    } else {
         die("Query failed: " . mysqli_error($conn));
     }
 
     // Refresh the page to show updated data
     header("Location: member_profile.php");
     exit();
+}
+
+// Get success message from session
+$successMessage = '';
+if (isset($_SESSION['success_message'])) {
+    $successMessage = $_SESSION['success_message'];
+    unset($_SESSION['success_message']);
 }
 ?>
 
@@ -113,6 +122,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="all-content">
     <main>
         <h1 id="headline">Profile Information</h1>
+        <?php if ($successMessage): ?>
+            <div style="color: green; text-align: center; margin-bottom: 20px;"><?php echo htmlspecialchars($successMessage); ?></div>
+        <?php endif; ?>
         <div class="profile-container">
             <form method="POST" action="member_profile.php">
                 <div class="profile-field">
@@ -194,5 +206,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="../Javascript/landing.js"></script>
 </body>
 </html>
-
-

@@ -53,33 +53,40 @@ session_start();
         <main>
             <h1>Quiz</h1>
             <div id="courses-container">
-                <?php
-                $sql = "SELECT quizzes.quiz_id, quizzes.quiz_title, 
-                COALESCE(MAX(attempts.score), 0) AS correct_answers,
-                (SELECT COUNT(*) FROM questions WHERE questions.quiz_id = quizzes.quiz_id) AS total_questions
-                FROM quizzes
-                LEFT JOIN attempts ON quizzes.quiz_id = attempts.quiz_id
-                GROUP BY quizzes.quiz_id";
-                $result = mysqli_query($conn, $sql);
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $correct_answers = $row['correct_answers'];
-                        $total_questions = $row['total_questions'];
-                        $score_display = ($correct_answers !== null) ? "$correct_answers / $total_questions" : 'N/A';
-                ?>
-                        <a href="quiz_page.php?id=<?php echo $row['quiz_id']; ?>">
-                            <div class="course">
-                                <h5 class="course-name"><?php echo $row["quiz_title"] ?></h5>
-                                <h5 class="course-score"><?php echo $score_display; ?></h5>
-                            </div>
-                        </a>
-                <?php
-                    }
-                } else {
-                    echo "No courses found.";
-                }
-                ?>
-            </div>
+    <?php
+    $member_id = $_SESSION['id']; // Retrieve the member ID from the session
+
+    $sql = "SELECT quizzes.quiz_id, quizzes.quiz_title, 
+            COALESCE(MAX(attempts.score), 0) AS correct_answers,
+            (SELECT COUNT(*) FROM questions WHERE questions.quiz_id = quizzes.quiz_id) AS total_questions
+            FROM quizzes
+            LEFT JOIN attempts ON quizzes.quiz_id = attempts.quiz_id AND attempts.user_id = ?
+            GROUP BY quizzes.quiz_id";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $member_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $correct_answers = $row['correct_answers'];
+            $total_questions = $row['total_questions'];
+            $score_display = ($correct_answers !== null) ? "$correct_answers / $total_questions" : 'N/A';
+    ?>
+            <a href="quiz_page.php?id=<?php echo $row['quiz_id']; ?>">
+                <div class="course">
+                    <h5 class="course-name"><?php echo $row["quiz_title"] ?></h5>
+                    <h5 class="course-score"><?php echo $score_display; ?></h5>
+                </div>
+            </a>
+    <?php
+        }
+    } else {
+        echo "No courses found.";
+    }
+    ?>
+</div>
         </main>
         <footer>
 
