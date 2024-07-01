@@ -164,9 +164,7 @@ $error_message = isset($_GET['error']) ? $_GET['error'] : '';
                 echo '<div class="comment">';
                 echo '<div class="comment-content-wrapper">';
                 echo '<a href="user_profile.php?id=' . $comment_row['user_id'] . '" style="font-size: 17px;"><h4 class="user-name">' . $comment_row['username'] . '</a> <span>' . time_stamp($comment_row['created']) . '</span>';
-                if ($comment_row['user_id'] == $_SESSION['id']) {
-                    echo '<button class="share-button btn-delete" style="font-size: 10px; padding: 5px 10px;" onclick="confirmDeleteComment(\'' . $comment_row['comment_id'] . '\')">X</button>';
-                }
+                
                 echo '</h4>';
                 
                 echo '<p class="comment-content">' . $comment_row['content_comment'] . '</p>';
