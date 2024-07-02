@@ -60,7 +60,7 @@ if ($points_to_add > 0) {
     $update_points_stmt->execute();
 }
 
-// Redirect back to quiz_page.php or any other appropriate page
-header("Location: quiz_page.php?id=$quiz_id");
+// Redirect back to quizzes_page.php with score and total questions
+header("Location: quizzes_page.php?score=$score&total=$total_questions");
 exit();
 ?>

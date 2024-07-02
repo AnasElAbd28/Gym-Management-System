@@ -35,10 +35,10 @@ session_start();
                 <li><a href="quick_form_check.php">Quick Form Check</a></li>
                 <li><a href="quizzes_page.php">Quiz</a></li>
                 <li><a href="schedule_plan.php">Schedule</a></li>
-                <li><a href="recommended_plan.php">recommended plan</a></li>
+                <li><a href="recommended_plan.php">Recommended Plan</a></li>
                 <li><a href="chat.php">Chat</a></li>
                 <li><a href="member_profile.php">Profile</a></li>
-                <li><a href="logout.php">logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
             
         </div>
@@ -52,6 +52,15 @@ session_start();
     <div class="all-content">
         <main>
             <h1>Quiz</h1>
+
+            <?php
+            if (isset($_GET['score']) && isset($_GET['total'])) {
+                $score = intval($_GET['score']);
+                $total = intval($_GET['total']);
+                echo "<p style='color: green; margin-bottom: 5px;'>You scored $score / $total</p>";
+            }
+            ?>
+
             <div id="courses-container">
     <?php
     $member_id = $_SESSION['id']; // Retrieve the member ID from the session
@@ -97,3 +106,4 @@ session_start();
 </body>
 
 </html>
+
