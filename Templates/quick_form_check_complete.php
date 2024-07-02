@@ -47,7 +47,6 @@
         <div class="l3"></div>
     </div>
 </nav>
-
 <!-- Second Navigation Bar (new) -->
 <nav class="second-nav">
     <div>

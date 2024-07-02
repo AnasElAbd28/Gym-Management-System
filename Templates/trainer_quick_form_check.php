@@ -25,14 +25,14 @@
     session_start() 
     ?>
     <nav class="first-nav">
-    <a href="member_dashboard.php">
+    <a href="trainer_dashboard.php">
         <h2>Pygmalion</h2>
     </a>
     <div>
         <ul class="nav-links">
-            <li><a href="trainer_quick_form_check.php">Quick Form Check</a></li>
-            <li><a href="chat.php">Chat</a></li>
-            <li><a href="logout.php">Logout</a></li>
+        <li><a href="trainer_quick_form_check.php">Quick Form Check</a></li>
+                <li><a href="chat.php">Chat</a></li>
+                <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
     <div class="burger">

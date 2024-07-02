@@ -13,15 +13,18 @@ $query = "SELECT age, weight, height, bmi, goal FROM measurements WHERE member_i
 $result = mysqli_query($conn, $query);
 $member = mysqli_fetch_assoc($result);
 
-// Assign member's data to variables
-$age = $member['age'];
-$weight = $member['weight'];
-$height = $member['height'];
-$bmi = $member['bmi'];
-$goal = $member['goal'];
+// Assign member's data to variables with default values if null
+$age = $member['age'] ?? null;
+$weight = $member['weight'] ?? null;
+$height = $member['height'] ?? null;
+$bmi = $member['bmi'] ?? null;
+$goal = $member['goal'] ?? "General Health and Wellness";
+
+// Check if any of the measurements are missing
+$measurements_missing = is_null($age) || is_null($weight) || is_null($height) || is_null($bmi);
 
 // Calculate BMR using Mifflin-St Jeor Equation
-$bmr = 10 * $weight + 6.25 * $height - 5 * $age + 5;
+$bmr = ($weight && $height && $age) ? 10 * $weight + 6.25 * $height - 5 * $age + 5 : 0;
 
 // Calculate TDEE (assuming moderate activity level for simplicity)
 $tdee = $bmr * 1.55;
@@ -145,7 +148,7 @@ function generate_workout_plan($weight, $height, $bmi, $age, $fitness_goal) {
 }
 
 // Generate workout plan
-$workout_plan = generate_workout_plan($weight, $height, $bmi, $age, $goal);
+$workout_plan = $measurements_missing ? [] : generate_workout_plan($weight, $height, $bmi, $age, $goal);
 
 ?>
 
@@ -159,12 +162,12 @@ $workout_plan = generate_workout_plan($weight, $height, $bmi, $age, $goal);
     <link rel="stylesheet" href="../Styles/member_dashboard_style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/3704673904.js" crossorigin="anonymous"></script>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.css" />
- <!-- Include Chart.js -->
- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.css" />
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/simplebar@5.3.0/dist/simplebar.min.js"></script>
 
     <title>Recommended Plan</title>
 </head>
@@ -192,74 +195,83 @@ $workout_plan = generate_workout_plan($weight, $height, $bmi, $age, $goal);
         <div class="l3"></div>
     </div>
 </nav>
-    <div class="all-content">
+<div class="all-content">
     <main>
         <h1>Recommended Plan</h1>
-         <div id="overview">
+        <div id="overview">
             <h2 id="overview-header">Nutrition Plan</h2>
-            <div id="overview-main">
-                <div class="overview-section">
-                    <h3>Total Calories</h3>
-                    <h4 class="overview-values"><?php echo $calories; ?></h4>
+            <?php if ($measurements_missing): ?>
+                <div id="overview-main">
+                    <h3 style="color: white;">No measurements done yet</h3>
                 </div>
-            </div>
-            <div id="overview-main">
-                <div class="overview-section">
-                    <h3>Carb %</h3>
-                    <h4 class="overview-values"><?php echo $carb_percent; ?></h4>
+            <?php else: ?>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Total Calories</h3>
+                        <h4 class="overview-values"><?php echo $calories; ?></h4>
+                    </div>
                 </div>
-            </div>
-            <div id="overview-main">
-                <div class="overview-section">
-                    <h3>Protein %</h3>
-                    <h4 class="overview-values"><?php echo $protein_percent; ?></h4>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Carb %</h3>
+                        <h4 class="overview-values"><?php echo $carb_percent; ?></h4>
+                    </div>
                 </div>
-            </div>
-            <div id="overview-main">
-                <div class="overview-section">
-                    <h3>Fat %</h3>
-                    <h4 class="overview-values"><?php echo $fat_percent; ?></h4>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Protein %</h3>
+                        <h4 class="overview-values"><?php echo $protein_percent; ?></h4>
+                    </div>
                 </div>
-            </div>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Fat %</h3>
+                        <h4 class="overview-values"><?php echo $fat_percent; ?></h4>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
         <div id="overview">
-        <h2 id="overview-header">Workout Plan</h2>
-        <div id="overview-main">
-            <div class="overview-section">
-                <h3>Workout Frequency</h3>
-                <h4 class="overview-values"><?php echo $workout_plan['Workout Frequency']; ?> days/week</h4>
-            </div>
+            <h2 id="overview-header">Workout Plan</h2>
+            <?php if ($measurements_missing): ?>
+                <div id="overview-main">
+                    <h3 style="color: white;">No measurements done yet</h3>
+                </div>
+            <?php else: ?>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Workout Frequency</h3>
+                        <h4 class="overview-values"><?php echo $workout_plan['Workout Frequency']; ?> days/week</h4>
+                    </div>
+                </div>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Rest Day Frequency</h3>
+                        <h4 class="overview-values"><?php echo $workout_plan['Rest Day Frequency']; ?> days/week</h4>
+                    </div>
+                </div>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Cardio Minutes per Day</h3>
+                        <h4 class="overview-values"><?php echo $workout_plan['Cardio Minutes per Day']; ?> minutes</h4>
+                    </div>
+                </div>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Cardio Calories Burnt per Session</h3>
+                        <h4 class="overview-values"><?php echo $workout_plan['Cardio Calories Burnt per Session']; ?> kcal</h4>
+                    </div>
+                </div>
+                <div id="overview-main">
+                    <div class="overview-section">
+                        <h3>Workout Type</h3>
+                        <h4 class="overview-values"><?php echo $workout_plan['Workout Type']; ?></h4>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
-        <div id="overview-main">
-            <div class="overview-section">
-                <h3>Rest Day Frequency</h3>
-                <h4 class="overview-values"><?php echo $workout_plan['Rest Day Frequency']; ?> days/week</h4>
-            </div>
-        </div>
-        <div id="overview-main">
-            <div class="overview-section">
-                <h3>Cardio Minutes per Day</h3>
-                <h4 class="overview-values"><?php echo $workout_plan['Cardio Minutes per Day']; ?> minutes</h4>
-            </div>
-        </div>
-        <div id="overview-main">
-            <div class="overview-section">
-                <h3>Cardio Calories Burnt per Session</h3>
-                <h4 class="overview-values"><?php echo $workout_plan['Cardio Calories Burnt per Session']; ?> kcal</h4>
-            </div>
-        </div>
-        <div id="overview-main">
-            <div class="overview-section">
-                <h3>Workout Type</h3>
-                <h4 class="overview-values"><?php echo $workout_plan['Workout Type']; ?></h4>
-            </div>
-        </div>
-
-</div>
-
     </main>
     <footer>
-
     </footer>
     <script src="../Javascript/app.js"></script>
     <script src="../Javascript/landing.js"></script>

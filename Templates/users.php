@@ -8,9 +8,16 @@
 <?php include_once "header.php"; ?>
 <body>
 <nav class="first-nav">
+<?php if ($_SESSION['type'] === 'member'): ?>
     <a href="member_dashboard.php">
         <h2>Pygmalion</h2>
-    </a>
+      </a>
+        <?php elseif ($_SESSION['type'] === 'trainer'): ?>
+          <a href="trainer_dashboard.php">
+        <h2>Pygmalion</h2>
+        </a>
+        <?php endif; ?>
+    
     <div>
         <ul class="nav-links">
             <?php if ($_SESSION['type'] === 'member'): ?>
@@ -23,7 +30,7 @@
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
             <?php elseif ($_SESSION['type'] === 'trainer'): ?>
-                <li><a href="quick_form_check.php">Quick Form Check</a></li>
+                <li><a href="trainer_quick_form_check.php">Quick Form Check</a></li>
                 <li><a href="chat.php">Chat</a></li>
                 <li><a href="logout.php">Logout</a></li>
             <?php endif; ?>

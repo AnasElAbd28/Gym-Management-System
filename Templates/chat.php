@@ -29,9 +29,16 @@ $row = mysqli_fetch_assoc($result);
 ?>
 
 <nav class="first-nav">
+<?php if ($_SESSION['type'] === 'member'): ?>
     <a href="member_dashboard.php">
         <h2>Pygmalion</h2>
-    </a>
+      </a>
+        <?php elseif ($_SESSION['type'] === 'trainer'): ?>
+          <a href="trainer_dashboard.php">
+        <h2>Pygmalion</h2>
+        </a>
+        <?php endif; ?>
+    
     <div>
         <ul class="nav-links">
             <?php if ($_SESSION['type'] === 'member'): ?>

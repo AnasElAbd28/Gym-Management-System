@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <nav class="first-nav">
-    <a href="member_dashboard.php">
+    <a href="trainer_dashboard.php">
         <h2>Pygmalion</h2>
     </a>
     <div>
