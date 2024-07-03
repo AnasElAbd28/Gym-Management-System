@@ -8,8 +8,12 @@ include 'db_conn.php';
 // Retrieve the member ID from the session
 $member_id = $_SESSION['id'];
 
-// Fetch member's measurements and goal from the database
-$query = "SELECT age, weight, height, bmi, goal FROM measurements WHERE member_id = $member_id";
+// Fetch the most recent measurements and goal from the database
+$query = "SELECT age, weight, height, bmi, goal 
+          FROM measurements 
+          WHERE member_id = $member_id 
+          ORDER BY measurement_date DESC 
+          LIMIT 1";
 $result = mysqli_query($conn, $query);
 $member = mysqli_fetch_assoc($result);
 
@@ -182,10 +186,10 @@ $workout_plan = $measurements_missing ? [] : generate_workout_plan($weight, $hei
                 <li><a href="quick_form_check.php">Quick Form Check</a></li>
                 <li><a href="quizzes_page.php">Quiz</a></li>
                 <li><a href="schedule_plan.php">Schedule</a></li>
-                <li><a href="recommended_plan.php">recommended plan</a></li>
+                <li><a href="recommended_plan.php">Recommended Plan</a></li>
                 <li><a href="chat.php">Chat</a></li>
                 <li><a href="member_profile.php">Profile</a></li>
-                <li><a href="logout.php">logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
             
         </div>
@@ -219,7 +223,7 @@ $workout_plan = $measurements_missing ? [] : generate_workout_plan($weight, $hei
                 </div>
                 <div id="overview-main">
                     <div class="overview-section">
-                        <h3>Protein %</h3>
+                        <h3>Protein %</h4>
                         <h4 class="overview-values"><?php echo $protein_percent; ?></h4>
                     </div>
                 </div>
@@ -277,3 +281,4 @@ $workout_plan = $measurements_missing ? [] : generate_workout_plan($weight, $hei
     <script src="../Javascript/landing.js"></script>
 </body>
 </html>
+
